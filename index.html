@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Giảng Đảo Ngữ Tiếng Anh</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .presentation-container {
+            width: 100%;
+            max-width: 900px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        .slide {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            min-height: 500px;
+            transition: opacity 0.5s ease-in-out;
+            position: relative;
+        }
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+        .slide-content {
+            text-align: center;
+            width: 100%;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .input-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 12px;
+            font-size: 1.1rem;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        .submit-btn {
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+        .feedback-area {
+            margin-top: 20px;
+        }
+        .congrats-message {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #28a745;
+            display: none;
+        }
+        .multiple-choice-area {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .choice-btn {
+            width: 80%;
+            padding: 12px;
+            font-size: 1rem;
+            background-color: #f8f9fa;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s, border-color 0.3s;
+            text-align: left;
+        }
+        .choice-btn:hover {
+            background-color: #e9ecef;
+        }
+        .choice-btn.correct {
+            background-color: #28a745;
+            color: #fff;
+            border-color: #28a745;
+        }
+        .choice-btn.incorrect {
+            background-color: #dc3545;
+            color: #fff;
+            border-color: #dc3545;
+        }
+        .firework {
+            position: absolute;
+            background: #ff0;
+            border-radius: 50%;
+            opacity: 0;
+            animation: firework-anim 1s ease-out forwards;
+        }
+        @keyframes firework-anim {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 20px;
+        }
+        .nav-btn {
+            padding: 12px 24px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #6c757d;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .nav-btn:hover:not(:disabled) {
+            background-color: #5a6268;
+        }
+        .nav-btn:disabled {
+            background-color: #e2e6ea;
+            cursor: not-allowed;
+        }
+        .progress {
+            font-size: 1rem;
+            color: #6c757d;
+            align-self: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide active">
+            <div class="slide-content">
+                <h1>Chào mừng đến với chuyên đề Đảo Ngữ</h1>
+                <p>Cô Trang sẽ hướng dẫn các em về chuyên đề đảo ngữ (inversion) trong tiếng Anh. Đảo ngữ là cách đảo ngược vị trí thông thường của chủ từ và động từ để nhấn mạnh một thành phần nào đó trong câu.</p>
+                <p>Chúng ta sẽ cùng tìm hiểu thông qua 24 câu hỏi bài tập nhé!</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 1</h1>
+                <p>___ can we ignore the impact of pollution on our lives.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-1" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(1)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-1">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-1">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 2</h1>
+                <p>___ a word did she say since she came home.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-2" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(2)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-2">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-2">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 3</h1>
+                <p>___ was he able to say anything to the press.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-3" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(3)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-3">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-3">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 4</h1>
+                <p>___ can the situation be improved by doing this.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-4" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(4)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-4">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-4">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 5</h1>
+                <p>___ had I tasted better food than in that local food stall.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-5" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(5)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-5">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-5">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 6</h1>
+                <p>___ does he go to work late.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-6" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(6)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-6">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-6">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 7</h1>
+                <p>___ a day goes by that he doesn't practice playing the guitar.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-7" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(7)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-7">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-7">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 8</h1>
+                <p>___ had he arrived home than he was sent for again.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-8" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(8)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-8">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-8">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 9</h1>
+                <p>___ by studying hard, ___ pass that difficult exam.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-9" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(9)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-9">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-9">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 10</h1>
+                <p>___ when he learned about the secret.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-10" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(10)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-10">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-10">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 11</h1>
+                <p>___ after she had read the letter did she understand the full meaning of it.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-11" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(11)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-11">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-11">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 12</h1>
+                <p>___ does he play the piano well but he also paints beautifully.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-12" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(12)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-12">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-12">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 13</h1>
+                <p>___ was the cake that everyone wanted a second slice.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-13" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(13)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-13">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-13">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 14</h1>
+                <p>___ were her talents that she could play many musical instruments.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-14" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(14)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-14">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-14">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 15</h1>
+                <p>___ until he was 30 did he decide to travel around the world.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-15" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(15)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-15">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-15">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 16</h1>
+                <p>___ were they so happy with their life.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-16" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(16)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-16">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-16">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 17</h1>
+                <p>___ you arrive late, we will save a place for you.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-17" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(17)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-17">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-17">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 18</h1>
+                <p>___ she learn a new language, she could increase her job opportunities.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-18" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(18)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-18">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-18">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 19</h1>
+                <p>___ she taken the earlier flight, she would have arrived on time for the meeting.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-19" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(19)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-19">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-19">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 20</h1>
+                <p>___ she tried, she could not lift the box.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-20" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(20)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-20">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-20">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 21</h1>
+                <p>___ did he run that he could not catch the bus.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-21" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(21)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-21">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-21">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 22</h1>
+                <p>___ a huge oak tree, providing shade on hot days.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-22" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(22)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-22">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-22">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 23</h1>
+                <p>___ the competition was a talented young musician.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-23" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(23)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-23">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-23">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập 24</h1>
+                <p>___ a lot of information on this website.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-24" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(24)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-24">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-24">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="prevSlide()" id="prev-btn" disabled>Trước</button>
+        <span class="progress" id="progress-indicator">Slide 1/25</span>
+        <button class="nav-btn" onclick="nextSlide()" id="next-btn">Sau</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length; 
+        const progressIndicator = document.getElementById('progress-indicator');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const presentationContainer = document.querySelector('.presentation-container');
+
+        const slidesData = [
+            null, // Slide 0
+            { // Slide 1
+                vietnamese: 'In no way can we ignore the impact of pollution on our lives.',
+                correct_answer: 'In no way',
+                choices: [
+                    'In no way',
+                    'In no circumstances',
+                    'In now compution',
+                    'In any case'
+                ]
+            },
+            { // Slide 2
+                vietnamese: 'Not a word did she say since she came home.',
+                correct_answer: 'Not a word',
+                choices: [
+                    'Not one word',
+                    'Not a word',
+                    'She said not a word',
+                    'She didn\'t say a word'
+                ]
+            },
+            { // Slide 3
+                vietnamese: 'No longer was he able to say anything to the press.',
+                correct_answer: 'No longer',
+                choices: [
+                    'No longer',
+                    'No more',
+                    'He was not able',
+                    'No way'
+                ]
+            },
+            { // Slide 4
+                vietnamese: 'On no account should the situation be improved by doing this.',
+                correct_answer: 'On no account',
+                choices: [
+                    'In no case',
+                    'For no reason',
+                    'On no account',
+                    'In no way'
+                ]
+            },
+            { // Slide 5
+                vietnamese: 'Nowhere had I tasted better food than in that local food stall.',
+                correct_answer: 'Nowhere',
+                choices: [
+                    'Nowhere',
+                    'No place',
+                    'Not a place',
+                    'Not anywhere'
+                ]
+            },
+            { // Slide 6
+                vietnamese: 'Seldom does he go to work late.',
+                correct_answer: 'Seldom',
+                choices: [
+                    'Seldom',
+                    'He seldom',
+                    'Rarely',
+                    'Almost never'
+                ]
+            },
+            { // Slide 7
+                vietnamese: 'Rarely a day goes by that he doesn\'t practice playing the guitar.',
+                correct_answer: 'Rarely',
+                choices: [
+                    'Rarely',
+                    'Hardly',
+                    'Seldom',
+                    'Almost no'
+                ]
+            },
+            { // Slide 8
+                vietnamese: 'Hardly had he arrived home than he was sent for again.',
+                correct_answer: 'Hardly',
+                choices: [
+                    'Hardly',
+                    'Scarcely',
+                    'No sooner',
+                    'Rarely'
+                ]
+            },
+            { // Slide 9
+                vietnamese: 'Only by studying hard, will you pass that difficult exam.',
+                correct_answer: 'Only by',
+                choices: [
+                    'Only if',
+                    'Only when',
+                    'Only by',
+                    'Only in'
+                ]
+            },
+            { // Slide 10
+                vietnamese: 'Only if you finish your homework, will you be allowed to watch TV.',
+                correct_answer: 'Only if you finish your homework,',
+                choices: [
+                    'Only if you finish your homework,',
+                    'Only if you will finish your homework,',
+                    'Only if you finished your homework,',
+                    'Only if you are finishing your homework,'
+                ]
+            },
+            { // Slide 11
+                vietnamese: 'Only after she had read the letter did she understand the full meaning of it.',
+                correct_answer: 'Only after she had read the letter',
+                choices: [
+                    'Only after she had read the letter',
+                    'Only after having read the letter',
+                    'Only after she read the letter',
+                    'Only reading the letter'
+                ]
+            },
+            { // Slide 12
+                vietnamese: 'Not only does he play the piano well but he also paints beautifully.',
+                correct_answer: 'Not only does he play the piano well',
+                choices: [
+                    'Not only he plays the piano well',
+                    'Not only does he play the piano well',
+                    'Not only playing the piano well',
+                    'Not only piano he plays well'
+                ]
+            },
+            { // Slide 13
+                vietnamese: 'So delicious was the cake that everyone wanted a second slice.',
+                correct_answer: 'So delicious was the cake',
+                choices: [
+                    'So delicious was the cake',
+                    'So the cake was delicious',
+                    'The cake was so delicious',
+                    'So a delicious cake was it'
+                ]
+            },
+            { // Slide 14
+                vietnamese: 'Such were her talents that she could play many musical instruments.',
+                correct_answer: 'Such were her talents',
+                choices: [
+                    'Such was her talent',
+                    'Such were her talents',
+                    'Her talents were such',
+                    'Her talents such'
+                ]
+            },
+            { // Slide 15
+                vietnamese: 'Not until he was 30 did he decide to travel around the world.',
+                correct_answer: 'Not until',
+                choices: [
+                    'Not until',
+                    'Only when',
+                    'Only after',
+                    'It was not until'
+                ]
+            },
+            { // Slide 16
+                vietnamese: 'Never have they been so happy with their life.',
+                correct_answer: 'Never',
+                choices: [
+                    'Never',
+                    'Never ever',
+                    'Not ever',
+                    'In no time'
+                ]
+            },
+            { // Slide 17
+                vietnamese: 'Should you arrive late, we will save a place for you.',
+                correct_answer: 'Should you arrive late',
+                choices: [
+                    'Should you arrive late',
+                    'If you arrive late',
+                    'Were you to arrive late',
+                    'Had you arrived late'
+                ]
+            },
+            { // Slide 18
+                vietnamese: 'Were she to learn a new language, she could increase her job opportunities.',
+                correct_answer: 'Were she to learn a new language',
+                choices: [
+                    'If she learned a new language',
+                    'If she was learning a new language',
+                    'Were she to learn a new language',
+                    'Had she learned a new language'
+                ]
+            },
+            { // Slide 19
+                vietnamese: 'Had she taken the earlier flight, she would have arrived on time for the meeting.',
+                correct_answer: 'Had she taken the earlier flight',
+                choices: [
+                    'Had she taken the earlier flight',
+                    'If she had taken the earlier flight',
+                    'If she took the earlier flight',
+                    'Were she to have taken the earlier flight'
+                ]
+            },
+            { // Slide 20
+                vietnamese: 'However hard she tried, she could not lift the box.',
+                correct_answer: 'However hard she tried',
+                choices: [
+                    'No matter how hard she tried',
+                    'Hard though she tried',
+                    'How hard she tried',
+                    'However hard she tried'
+                ]
+            },
+            { // Slide 21
+                vietnamese: 'Fast did he run that he could not catch the bus.',
+                correct_answer: 'Fast',
+                choices: [
+                    'Fast',
+                    'So fast',
+                    'As fast as',
+                    'The faster'
+                ]
+            },
+            { // Slide 22
+                vietnamese: 'Nearby stood a huge oak tree, providing shade on hot days.',
+                correct_answer: 'Nearby stood a huge oak tree',
+                choices: [
+                    'A huge oak tree stood nearby',
+                    'Nearby a huge oak tree stood',
+                    'Nearby stood a huge oak tree',
+                    'A huge oak tree was standing nearby'
+                ]
+            },
+            { // Slide 23
+                vietnamese: 'Winning the competition was a talented young musician.',
+                correct_answer: 'Winning',
+                choices: [
+                    'Winning',
+                    'To win',
+                    'He won',
+                    'Having won'
+                ]
+            },
+            { // Slide 24
+                vietnamese: 'On this website, there is a lot of information.',
+                correct_answer: 'On this website, there is a lot of information.',
+                choices: [
+                    'On this website, a lot of information is.',
+                    'On this website, there is a lot of information.',
+                    'On this website, is there a lot of information.',
+                    'A lot of information is on this website.'
+                ]
+            }
+        ];
+
+        function updateNavigation() {
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+            progressIndicator.textContent = `Slide ${currentSlide + 1}/${totalSlides}`;
+        }
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            updateNavigation();
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        function submitAnswer(slideIndex) {
+            const input = document.getElementById(`answer-${slideIndex}`);
+            const congratsMessage = document.getElementById(`congrats-${slideIndex}`);
+            const mcArea = document.getElementById(`mc-${slideIndex}`);
+            
+            if (!slidesData[slideIndex]) {
+                alert('Slide này không có bài tập.');
+                return;
+            }
+
+            const userAnswer = input.value.trim().toLowerCase();
+            const correctText = slidesData[slideIndex].correct_answer.trim().toLowerCase();
+
+            congratsMessage.style.display = 'none';
+            mcArea.style.display = 'none';
+            input.style.borderColor = '#ccc';
+
+            if (userAnswer === correctText) {
+                createFireworks();
+                congratsMessage.style.display = 'block';
+                input.style.borderColor = '#28a745';
+            } else {
+                input.style.borderColor = '#dc3545';
+                mcArea.style.display = 'flex';
+                renderMultipleChoice(slideIndex);
+            }
+        }
+
+        function renderMultipleChoice(slideIndex) {
+            const mcArea = document.getElementById(`mc-${slideIndex}`);
+            mcArea.innerHTML = '<p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>';
+            
+            const choices = slidesData[slideIndex].choices;
+            const correctAnswer = slidesData[slideIndex].correct_answer;
+
+            choices.forEach(choice => {
+                const button = document.createElement('button');
+                button.classList.add('choice-btn');
+                button.textContent = choice;
+                button.onclick = () => checkMultipleChoice(slideIndex, choice, correctAnswer, button);
+                mcArea.appendChild(button);
+            });
+        }
+
+        function checkMultipleChoice(slideIndex, userChoice, correctAnswer, button) {
+            const congratsMessage = document.getElementById(`congrats-${slideIndex}`);
+            const input = document.getElementById(`answer-${slideIndex}`);
+            const mcButtons = document.querySelectorAll(`#mc-${slideIndex} .choice-btn`);
+
+            mcButtons.forEach(btn => btn.disabled = true);
+
+            if (userChoice.trim().toLowerCase() === correctAnswer.trim().toLowerCase()) {
+                createFireworks();
+                congratsMessage.textContent = 'Chúc mừng, đáp án chính xác!';
+                congratsMessage.style.display = 'block';
+                button.classList.add('correct');
+                input.style.borderColor = '#28a745';
+            } else {
+                congratsMessage.textContent = 'Đáp án chưa đúng. Vui lòng thử lại.';
+                congratsMessage.style.display = 'block';
+                button.classList.add('incorrect');
+                mcButtons.forEach(btn => {
+                    if (btn.textContent.trim().toLowerCase() === correctAnswer.trim().toLowerCase()) {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+        }
+
+        function createFireworks() {
+            const numberOfFireworks = 30;
+            for (let i = 0; i < numberOfFireworks; i++) {
+                const firework = document.createElement('div');
+                firework.classList.add('firework');
+                firework.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                firework.style.left = `${Math.random() * 100}%`;
+                firework.style.top = `${Math.random() * 100}%`;
+                firework.style.animationDelay = `${Math.random() * 0.5}s`;
+                presentationContainer.appendChild(firework);
+                
+                firework.addEventListener('animationend', () => {
+                    firework.remove();
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showSlide(currentSlide);
+            updateNavigation();
+        });
+    </script>
+</body>
+</html>
